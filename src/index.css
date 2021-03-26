@@ -1,0 +1,14 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background-color: #96D1FF;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.8rem;
+  line-height: 1.6;
+}
