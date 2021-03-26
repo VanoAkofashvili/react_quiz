@@ -1,22 +1,64 @@
+import { useState } from "react";
 import Question from "../Question/Question";
 import Option from "../Option/Option";
-
-const shuffle = array => {
+import Again from "../Again/Again";
+import { useGlobalContext } from "../../context";
+const shuffle = (array) => {
   array.sort(() => Math.random() - 0.5);
-}
+};
 
-const QuestionBox = ({questions, index, setIndex}) => {
-  const answers = [...questions[index].incorrect_answers.map((option, i) => <Option content={option} key={i}/>)]
-  answers.push(<Option key={4} content={questions[index].correct_answer}/>)
-  shuffle(answers)
+const QuestionBox = () => {
+  const {
+    questions,
+    index,
+    setIndex,
+    setScore,
+    score,
+    startAgain,
+  } = useGlobalContext();
+  const [finished, setFinished] = useState(false);
+  const checkAnswer = (answer) => {
+    if (answer === questions[index].correct_answer) {
+      setScore((score) => score + 1);
+    }
+    if (index < questions.length - 1) {
+      setIndex((index) => index + 1);
+    } else {
+      setFinished(true);
+    }
+  };
 
-  return <section className="question__box">
-    <Question title={questions[index].question}/>
-    <div className="options">
+  const answers = [
+    ...questions[index].incorrect_answers.map((option, i) => (
+      <Option checkAnswer={checkAnswer} content={option} key={i} />
+    )),
+  ];
+  answers.push(
+    <Option
+      checkAnswer={checkAnswer}
+      key={4}
+      content={questions[index].correct_answer}
+    />
+  );
+  shuffle(answers);
 
-    {answers}
-    </div>
-  </section>
-}
+  return (
+    <section className="question__section">
+      {finished ? (
+        <Again score={score} startAgain={startAgain} />
+      ) : (
+        <>
+          <h2 className="question__count">
+            Question {index + 1} / {questions.length}
+          </h2>
+          <section className="">
+            <Question title={questions[index].question} />
+            <div className="options">{answers}</div>
+          </section>
+        </>
+      )}
+    </section>
+  );
+};
 
-export default QuestionBox
+export default QuestionBox;

@@ -1,5 +1,11 @@
 import React from "react";
 
-export default function Option({ content }) {
-  return <button className="option btn">{content}</button>;
+export default function Option({ content, checkAnswer }) {
+  return (
+    <button
+      className="option btn"
+      dangerouslySetInnerHTML={{ __html: content }}
+      onClick={() => checkAnswer(content)}
+    />
+  );
 }
