@@ -146,6 +146,7 @@
   background: green;
   padding: 2px 3px;
   border-radius: 1rem;
+  display: inline-block;
 }
 
 .modal ul li:last-child {
