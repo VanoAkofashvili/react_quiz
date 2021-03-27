@@ -99,7 +99,7 @@
   margin-top: 1rem;
 }
 
-.try-again__container {
+.try-again-container {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -112,6 +112,44 @@
   font-weight: 300;
   letter-spacing: 1.3px;
   margin-bottom: 2rem;
+}
+
+/* Correct answers and Modal */
+.correct-answers-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.modal {
+  position: absolute;
+  top: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  border-radius: 1rem;
+  display: none;
+  transition: all 0.3s linear;
+}
+
+.modal--show {
+  display: block;
+}
+
+.modal ul li {
+  display: block;
+  font-size: 1.5rem;
+  border-bottom: 1px solid #eee;
+  padding: 4px 0;
+}
+
+.modal ul li span {
+  background: green;
+  padding: 2px 3px;
+  border-radius: 1rem;
+}
+
+.modal ul li:last-child {
+  border-bottom: none;
 }
 
 @media (max-width: 562px) {

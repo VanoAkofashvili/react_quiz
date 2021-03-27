@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Question from "../Question/Question";
 import Option from "../Option/Option";
-import Again from "../Again/Again";
+import Finished from "../Finished/Finished";
 import { useGlobalContext } from "../../context";
 
 const shuffle = (array) => {
@@ -9,14 +9,7 @@ const shuffle = (array) => {
 };
 
 const QuestionBox = () => {
-  const {
-    questions,
-    index,
-    setIndex,
-    setScore,
-    score,
-    startAgain,
-  } = useGlobalContext();
+  const { questions, index, setIndex, setScore } = useGlobalContext();
   const [finished, setFinished] = useState(false);
 
   const checkAnswer = (answer) => {
@@ -55,7 +48,7 @@ const QuestionBox = () => {
   return (
     <section className="question__section">
       {finished ? (
-        <Again score={score} startAgain={startAgain} />
+        <Finished />
       ) : (
         <>
           <h2 className="question__count">
