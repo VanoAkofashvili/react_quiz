@@ -1,3 +1,4 @@
+import React from "react";
 import "./App.css";
 
 import StartingForm from "./components/StartingForm/StartingForm";
@@ -5,35 +6,20 @@ import QuestionBox from "./components/QuestionBox/QuestionBox";
 import { useGlobalContext } from "./context";
 
 function App() {
-  const {
-    started,
-    startQuiz,
-    loading,
-    questions,
-    setScore,
-    index,
-    setIndex,
-    score,
-    startAgain,
-  } = useGlobalContext();
+  const { started } = useGlobalContext();
+
+  // Starting page
   if (!started) {
     return (
       <main className="App">
-        <StartingForm submitHandler={startQuiz} />
+        <StartingForm />
       </main>
     );
   }
 
   return (
     <main className="App">
-      <QuestionBox
-        questions={questions}
-        setScore={setScore}
-        index={index}
-        setIndex={setIndex}
-        score={score}
-        startAgain={startAgain}
-      />
+      <QuestionBox />
     </main>
   );
 }

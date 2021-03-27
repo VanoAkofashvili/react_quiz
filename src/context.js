@@ -8,6 +8,7 @@ const AppProvider = ({ children }) => {
   const [index, setIndex] = useState(0);
   const [score, setScore] = useState(0);
 
+  // Reset quiz
   const startAgain = () => {
     setStarted(false);
     setQuestions([]);
@@ -19,14 +20,18 @@ const AppProvider = ({ children }) => {
     fetch(
       `https://opentdb.com/api.php?amount=10&category=${cat}&difficulty=${diff}`
     )
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          throw new Error("Can not fetch quesions");
+        }
+      })
       .then((data) => {
         setQuestions(data.results);
-
         setStarted(true);
       })
       .catch((error) => {
-        console.log("Error");
         console.log(error);
       });
   };

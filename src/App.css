@@ -1,5 +1,5 @@
 .App {
-  width: 1000px;
+  max-width: 50rem;
   margin: 5rem auto;
   background-color: #3f4964;
   box-shadow: 0 1rem 1.3rem rgba(0, 0, 0, 0.3);

@@ -1,10 +1,12 @@
-import React, {useRef} from "react";
+import React, { useRef } from "react";
 
-import {categories} from "../../categories";
+import { categories } from "../../categories";
+import { useGlobalContext } from "../../context";
 
-export default function StartingForm({submitHandler}) {
-  const categoryRef = useRef(null)
-  const difficultyRef = useRef(null)
+export default function StartingForm() {
+  const categoryRef = useRef(null);
+  const difficultyRef = useRef(null);
+  const { startQuiz } = useGlobalContext();
   return (
     <form className="starting-form">
       <fieldset>
@@ -33,10 +35,16 @@ export default function StartingForm({submitHandler}) {
           </select>
         </div>
         <div className="form-group">
-          <button onClick={(e) => {
-            e.preventDefault()
-            submitHandler(categoryRef.current.value, difficultyRef.current.value)
-          }} className="btn">Start Quiz</button>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              // Get the category and difficulty values and start quiz with selected options
+              startQuiz(categoryRef.current.value, difficultyRef.current.value);
+            }}
+            className="btn"
+          >
+            Start Quiz
+          </button>
         </div>
       </fieldset>
     </form>
