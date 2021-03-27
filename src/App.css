@@ -5,29 +5,10 @@
   box-shadow: 0 1rem 1.3rem rgba(0, 0, 0, 0.3);
   border-radius: 1rem;
   padding: 2rem 2rem 4rem 2rem;
-  min-height: 50vh;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.example-enter {
-  opacity: 0.01;
-}
-
-.example-enter.example-enter-active {
-  opacity: 1;
-  transition: opacity 500ms ease-in;
-}
-
-.example-leave {
-  opacity: 1;
-}
-
-.example-leave.example-leave-active {
-  opacity: 0.01;
-  transition: opacity 300ms ease-in;
 }
 
 /*Form*/
@@ -130,4 +111,14 @@
   font-weight: 300;
   letter-spacing: 1.3px;
   margin-bottom: 2rem;
+}
+
+@media (max-width: 562px) {
+  .App {
+    width: 90%;
+  }
+
+  .starting-form legend {
+    font-size: 1.8rem;
+  }
 }
