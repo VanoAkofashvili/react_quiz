@@ -6,22 +6,28 @@ import QuestionBox from "./components/QuestionBox/QuestionBox";
 import { useGlobalContext } from "./context";
 
 function App() {
-  const { started } = useGlobalContext();
+  const { started, isError } = useGlobalContext();
 
-  // Starting page
-  if (!started) {
+  if (started) {
+    return (
+      <main className="App">
+        {isError ? (
+          "Something went wrong, Please try again later"
+        ) : (
+          <QuestionBox />
+        )}
+      </main>
+    );
+  }
+
+  // Starting Form
+  else {
     return (
       <main className="App">
         <StartingForm />
       </main>
     );
   }
-
-  return (
-    <main className="App">
-      <QuestionBox />
-    </main>
-  );
 }
 
 export default App;
